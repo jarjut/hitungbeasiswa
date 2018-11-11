@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/bg_form"
+    tools:context=".HitungActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/logonobg" />
+
+    <EditText
+        android:id="@+id/editTextIPK"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="30dp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:fontFamily="@font/avenir_regular"
+        android:textColorHint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:hint="IPK"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/editTextGaji"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/editTextIPK"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:fontFamily="@font/avenir_regular"
+        android:textColorHint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:hint="Gaji Orang Tua"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/hitung"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:onClick="onClick"
+        android:background="@drawable/roundedbutton"
+        android:fontFamily="@font/avenir_regular"
+        android:textColor="@android:color/white"
+        android:text="Hitung" />
+
+</RelativeLayout>
