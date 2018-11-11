@@ -3,6 +3,7 @@ package com.example.fajrul.hitungbeasiswa;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -52,7 +53,6 @@ public class HitungActivity extends AppCompatActivity {
     }
 
     public void fuzzifikasiPenghasilanOrtu(double gaji){
-
         if(gaji <= 2000000){
             g_rendah =1;
             g_tinggi =0;
@@ -63,6 +63,8 @@ public class HitungActivity extends AppCompatActivity {
             g_rendah =0;
             g_tinggi =1;
         }
+        Log.d("gaji_rendah", ""+g_rendah);
+        Log.d("gaji_tinggi", ""+g_tinggi);
     }
 
     public void fuzzifikasiIPK(double ipk){
@@ -76,6 +78,8 @@ public class HitungActivity extends AppCompatActivity {
             ipk_rendah=0;
             ipk_tinggi=1;
         }
+        Log.d("ipk_rendah", ""+ipk_rendah);
+        Log.d("ipk_tinggi", ""+ipk_tinggi);
     }
 
     public void Rules(){
@@ -83,11 +87,11 @@ public class HitungActivity extends AppCompatActivity {
         rule1   = Math.min(g_tinggi, ipk_tinggi);
         z1 = 4000000 - (rule1 * (4000000 - 2000000));
         // IF Penghasilan Rendah dan IPK Rendah then Besar beasiswa Rendah
-        rule1   = Math.min(g_rendah, ipk_rendah);
+        rule2   = Math.min(g_rendah, ipk_rendah);
         z2 = 4000000 - (rule2 * (4000000 - 2000000));
         // IF Penghasilan Rendah dan IPK Tinggi then Besar beasiswa Tinggi
         rule3   = Math.min(g_rendah, ipk_tinggi);
-        z3 = 2000000 - (rule3 * (2000000 - 4000000));
+        z3 = 2000000 + (rule3 * 4000000);
         // IF Penghasilan Tinggi dan IPK Rendah then Besar beasiswa Rendah
         rule4   = Math.min(g_tinggi, ipk_rendah);
         z4 = 4000000 - (rule4 * (4000000 - 2000000));
