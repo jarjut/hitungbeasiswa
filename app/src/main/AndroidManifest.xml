@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".HomeActivity" />
         <activity android:name=".HitungActivity" />
-        <activity android:name=".OutputActivity"></activity>
+        <activity android:name=".OutputActivity" />
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>

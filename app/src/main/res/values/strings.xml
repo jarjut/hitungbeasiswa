@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Hitung Beasiswa</string>
+    <string name="about1">Hitung Beasiswa merupakan aplikasi berbasis android yang memiliki fitur untuk menghitung prediksi banyaknya beasiswa yang akan diterima dengan cara melakukan input nilai IPK(Indeks Prestasi Kumulatif) mahasiswa dan jumlah gaji orang tua.</string>
+    <string name="about2">Aplikasi ini menggunakan logika fuzzy dengan metode Tsukamoto. Output dari aplikasi ini berupa prediksi jumlah beasiswa yang akan diterima oleh mahasiswa.</string>
 </resources>

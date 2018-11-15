@@ -1,6 +1,8 @@
 package com.example.fajrul.hitungbeasiswa;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,13 +30,15 @@ public class HitungActivity extends AppCompatActivity {
     }
 
     public void onClick(View v){
-        if(editTextIPK.getText().toString().isEmpty()){
+        String ipkx = editTextIPK.getText().toString();
+        String gajix = editTextGaji.getText().toString();
+        if(ipkx.isEmpty()){
             Toast.makeText(this, "Please fill in the form",Toast.LENGTH_SHORT).show();
-        }else if(editTextGaji.getText().toString().isEmpty()){
+        }else if(gajix.isEmpty()){
             Toast.makeText(this, "Please fill in the form",Toast.LENGTH_SHORT).show();
-        }else{
-            ipk  = Double.parseDouble(editTextIPK.getText().toString());
-            gaji = Double.parseDouble(editTextGaji.getText().toString());
+        }else if(Double.parseDouble(ipkx)>=3){
+            ipk  = Double.parseDouble(ipkx);
+            gaji = Double.parseDouble(gajix);
             double hasil = hitung(ipk, gaji);
             Intent intent = new Intent(this, OutputActivity.class);
             intent.putExtra("hasil", hasil);
@@ -42,6 +46,17 @@ public class HitungActivity extends AppCompatActivity {
             intent.putExtra("gaji",gaji);
             startActivity(intent);
             finish();
+        }else{
+            AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog.setTitle("Syarat Tidak Memenuhi");
+            alertDialog.setMessage("IPK Minimal 3.0");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            alertDialog.show();
         }
     }
 
@@ -68,12 +83,12 @@ public class HitungActivity extends AppCompatActivity {
     }
 
     public void fuzzifikasiIPK(double ipk){
-        if(ipk <= 2.5){
+        if(ipk <= 3){
             ipk_rendah=1;
             ipk_tinggi=0;
-        }else if(ipk >= 2.5 && ipk <= 4){
-            ipk_rendah = (4-ipk)/(4-2.5);
-            ipk_tinggi = (ipk-2.5)/(4-2.5);
+        }else if(ipk >= 3 && ipk <= 4){
+            ipk_rendah = (4-ipk)/(4-3);
+            ipk_tinggi = (ipk-3)/(4-3);
         }else{
             ipk_rendah=0;
             ipk_tinggi=1;
@@ -86,9 +101,9 @@ public class HitungActivity extends AppCompatActivity {
         // IF Penghasilan Tinggi dan IPK TINGGI then Besar beasiswa Rendah
         rule1   = Math.min(g_tinggi, ipk_tinggi);
         z1 = 4000000 - (rule1 * (4000000 - 2000000));
-        // IF Penghasilan Rendah dan IPK Rendah then Besar beasiswa Rendah
+        // IF Penghasilan Rendah dan IPK Rendah then Besar beasiswa Tinggi
         rule2   = Math.min(g_rendah, ipk_rendah);
-        z2 = 4000000 - (rule2 * (4000000 - 2000000));
+        z2 = 2000000 + (rule2 * 4000000);
         // IF Penghasilan Rendah dan IPK Tinggi then Besar beasiswa Tinggi
         rule3   = Math.min(g_rendah, ipk_tinggi);
         z3 = 2000000 + (rule3 * 4000000);

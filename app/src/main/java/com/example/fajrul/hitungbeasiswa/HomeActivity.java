@@ -16,7 +16,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onClick (View v){
-        Intent intent = new Intent(this, HitungActivity.class);
-        startActivity(intent);
+        if(v.getId()==R.id.mulai){
+            Intent intent = new Intent(this, HitungActivity.class);
+            startActivity(intent);
+        }else if(v.getId()==R.id.about){
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+        }
+
     }
 }
